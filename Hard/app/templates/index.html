@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicație de Procesare Date</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <h1>Aplicație de procesare date</h1>
+
+    <form action="/process" method="post">
+        <textarea name="data" placeholder="Introduceți datele aici" rows="5" cols="40"></textarea><br>
+        <input type="submit" value="Procesează">
+    </form>
+
+    <div class="container">
+        <h3>Rezultatele procesării vor apărea aici</h3>
+    </div>
+
+</body>
+</html>

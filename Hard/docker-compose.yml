@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./app
+    ports:
+      - "5000:5000"  # Portul pe care aplicația web va fi disponibilă pe host
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=procesare_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    networks:
+      - app_network
+    volumes:
+      - ./db:/app/db  
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: procesare_db
+    ports:
+      - "3306:3306"  # Portul pe care baza de date va fi disponibilă pe host
+    volumes:
+      - db_data:/var/lib/mysql  # Persistența datelor
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  db_data:
+
+
+    
